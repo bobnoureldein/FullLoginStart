@@ -18,7 +18,7 @@ import {
   listenOrientationChange as lor,
   removeOrientationListener as rol,
 } from 'react-native-responsive-screen-hooks';
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { LocalizationContext } from '../../components/translations'
 
@@ -58,18 +58,6 @@ const login = ({ navigation }) => {
     }
   };
 
-  function handleLogin(values, actions) {
-    console.log('values ', values)
-    setLoading(true);
-    navigation.navigate('Home', { screen: 'settings' }, setLoading(false))
-    actions.resetForm({
-      values: {
-        email: '',
-        password: '',
-      },
-    })
-  }
-
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     onSubmit: (values, actions) => handleLogin(values, actions),
@@ -83,8 +71,14 @@ const login = ({ navigation }) => {
         .min(6)
         .required(),
     })
-
   })
+
+  function handleLogin(values, actions) {
+    console.log('values ', values)
+    setLoading(true);
+    navigation.navigate('Home', { screen: 'settings' }, setLoading(false))
+    actions.resetForm()
+  }
 
   const styles = StyleSheet.create({
     main: {
@@ -170,22 +164,6 @@ const login = ({ navigation }) => {
           resizeMode="contain"
         />
       </View>
-      {/* <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={
-          yup.object().shape({
-            email: yup
-              .string()
-              .email()
-              .required(),
-            password: yup
-              .string()
-              .min(6)
-              .required(),
-          })}
-        onSubmit={(values, actions) => handleLogin(values, actions)}
-      >
-        {({ values, handleChange, errors, setFieldTouched, touched, handleSubmit }) => ( */}
       <React.Fragment>
         <View style={styles.secondLayer}>
           <Text style={{ fontSize: newHP('5%') }}>Welcome Back</Text>
@@ -274,8 +252,6 @@ const login = ({ navigation }) => {
           </View>
         </View>
       </React.Fragment>
-      {/* )}
-      </Formik> */}
     </ScrollView >
   );
 };
