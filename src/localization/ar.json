@@ -1,6 +1,18 @@
 {
-  "welcome": "مرحبا بك",
   "login": "تسجيل الدخول",
+  "login.welcome": "مرحبا بك",
+  "login.loginAccount": "سجل دخول الى حسابك",
+  "login.email": "البريد الالكترونى",
+  "login.password": "كلمه المرور",
+  "login.forgotPassword": "هل نسيت كلمه المرور؟",
   "login.facebook": "تسجيل الدخول باستخدام الفيسبوك",
-  "date.format": "21.11.19"
+  "login.doNotHaveAcc": "لا تمتلك حساب؟",
+  "signUp": "تسجيل",
+  "signUp.create": "تسجيل الحساب",
+  "signUp.createNew": "سجل حساب جديد",
+  "signUp.name": "الاسم",
+  "signUp.email": "البريد الالككترونى",
+  "signUp.password": "كلمه المرور",
+  "signUp.rePassword": "اعاده كلمه المرور",
+  "signUp.haveACC": "هل تمتلك حساب؟"
 }

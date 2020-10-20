@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import {
   StyleSheet,
   TextInput,
-  Dimensions,
   TouchableOpacity,
   View,
   Text,
   Image,
   ActivityIndicator,
   ScrollView,
+  Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -22,20 +22,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { LocalizationContext } from '../../components/translations'
 
-const { width, height } = Dimensions.get('window');
-
 const login = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [orientation, setOrientation] = React.useState('portrait');
-
-  useEffect(() => {
-    lor(setOrientation);
-    return () => {
-      rol();
-    };
-  }, []);
+  const { width, height } = Dimensions.get('window');
 
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
@@ -45,18 +35,13 @@ const login = ({ navigation }) => {
   initializeAppLanguage()
 
 
-  handleOnChange = (x) => (value) => {
-    switch (x) {
-      case 'username':
-        setUsername(value);
-        console.log('username', username);
-        break;
-      case 'password':
-        setPassword(value);
-        console.log('password', password);
-        break;
-    }
-  };
+  useEffect(() => {
+    lor(setOrientation);
+    return () => {
+      rol();
+    };
+  }, []);
+
 
   const formik = useFormik({
     initialValues: { email: '', password: '' },
@@ -91,17 +76,12 @@ const login = ({ navigation }) => {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    secondLayer: {
+    secondThirdLayer: {
       width: wp('100%'),
-      height: newHP('36%'),
+      height: newHP('35%'),
       alignItems: 'center',
     },
-    thirdLayer: {
-      width: wp('100%'),
-      height: newHP('34%'),
-      alignItems: 'center',
-    },
-    inputView: {
+    inputSubmitView: {
       width: wp('80%'),
       height: newHP('6%'),
       flexDirection: 'row',
@@ -111,7 +91,6 @@ const login = ({ navigation }) => {
       marginTop: 12,
       borderRadius: height * 0.03,
       elevation: 4,
-      backgroundColor: '#f6f6f6',
     },
     icon: {
       fontSize: 20,
@@ -121,33 +100,6 @@ const login = ({ navigation }) => {
       textAlign: 'center',
       fontSize: newHP('2.2%'),
       minWidth: wp('60%'),
-    },
-    submit: {
-      width: wp('80%'),
-      height: newHP('6%'),
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingHorizontal: 8,
-      marginTop: 12,
-      borderRadius: height * 0.03,
-      elevation: 4,
-      backgroundColor: '#E84545',
-    },
-    facebookLogin: {
-      width: wp('80%'),
-      height: newHP('6%'),
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingHorizontal: 12,
-      marginTop: 12,
-      borderRadius: height * 0.03,
-      elevation: 4,
-      backgroundColor: '#4267B2',
-    },
-    facebookIcon: {
-      fontSize: 20,
-      color: '#fff',
     },
     submitText: {
       color: '#fff',
@@ -165,38 +117,38 @@ const login = ({ navigation }) => {
         />
       </View>
       <React.Fragment>
-        <View style={styles.secondLayer}>
-          <Text style={{ fontSize: newHP('5%') }}>Welcome Back</Text>
-          <Text style={{ fontSize: newHP('2.5%') }}>Login to your account</Text>
-          <View style={[styles.inputView, { marginTop: 36 }]}>
+        <View style={styles.secondThirdLayer}>
+          <Text style={{ fontSize: newHP('5%') }}>{translations['login.welcome']}</Text>
+          <Text style={{ fontSize: newHP('2.5%') }}>{translations['login.loginAccount']}</Text>
+          <View style={[styles.inputSubmitView, { backgroundColor: '#f6f6f6', marginTop: 36 }]} >
             <Icon name="user" style={styles.icon} />
             <TextInput
               value={formik.values.email}
               disabled={loading}
-              placeholder="username"
+              placeholder={translations['login.email']}
               style={styles.textInput}
               onChangeText={formik.handleChange('email')}
               onBlur={() => formik.setFieldTouched('email')}
               ref={emailInput}
-              maxLength={30}
+              maxLength={48}
             />
             <View style={{ width: 24 }} />
           </View>
           {formik.touched.email && formik.errors.email &&
             <Text style={{ fontSize: newHP('1.7%'), color: 'red' }}>{formik.errors.email}</Text>
           }
-          <View style={styles.inputView}>
+          <View style={[styles.inputSubmitView, { backgroundColor: '#f6f6f6' }]}>
             <Icon name="lock" style={styles.icon} />
             <TextInput
               value={formik.values.password}
               disabled={loading}
-              placeholder="password"
+              placeholder={translations['login.password']}
               style={styles.textInput}
               onChangeText={formik.handleChange('password')}
               onBlur={() => formik.setFieldTouched('password')}
               secureTextEntry={true}
               ref={passwordInput}
-              maxLength={24}
+              maxLength={48}
             />
             <View style={{ width: 24 }} />
           </View>
@@ -212,15 +164,15 @@ const login = ({ navigation }) => {
             }}
             hitSlop={{ top: 12, bottom: 12, left: 8, right: 8 }}>
             <Text style={{ fontWeight: 'bold', color: '#E84545', fontSize: newHP('2%') }}>
-              Forgot password?
-                </Text>
+              {translations['login.forgotPassword']}
+            </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.thirdLayer}>
+        <View style={styles.secondThirdLayer}>
           <TouchableOpacity
             disabled={loading}
-            style={styles.submit}
+            style={[styles.inputSubmitView, { backgroundColor: '#E84545', justifyContent: 'center' }]}
             onPress={formik.handleSubmit}>
             {loading ? (
               <ActivityIndicator size="small" color="#fff" />
@@ -230,10 +182,10 @@ const login = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            style={styles.facebookLogin}
-            onPress={() => navigation.navigate('Home', { screen: 'home' })}>
+            style={[styles.inputSubmitView, { backgroundColor: '#4267B2' }]}
+            onPress={() => navigation.navigate('Home', { screen: 'settings' })}>
             <View style={{ width: 40 }}>
-              <Icon name="facebook" style={styles.facebookIcon} />
+              <Icon name="facebook" style={styles.icon} />
             </View>
             {loading ? (
               <ActivityIndicator size="small" color="#fff" />
@@ -242,12 +194,13 @@ const login = ({ navigation }) => {
               )}
             <View style={{ width: 40 }} />
           </TouchableOpacity>
-          <View style={{ flexDirection: 'row', marginTop: 24 }}>
-            <Text style={{ fontSize: newHP('2%') }}>Don't have an account?</Text>
+          <View style={{ flexDirection: translations._language == 'ar' ? 'row-reverse' : 'row', marginTop: 24 }}>
+            <Text style={{ fontSize: newHP('2%') }}>{translations['login.doNotHaveAcc']}</Text>
             <TouchableOpacity
               disabled={loading}
+              onPress={() => navigation.navigate('signup')}
               hitSlop={{ top: 12, bottom: 12, left: 8, right: 8 }}>
-              <Text style={{ fontWeight: 'bold', color: '#E84545', fontSize: newHP('2%') }}> Sign up</Text>
+              <Text style={{ fontWeight: 'bold', color: '#E84545', fontSize: newHP('2%') }}> {translations['signUp']}</Text>
             </TouchableOpacity>
           </View>
         </View>

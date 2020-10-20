@@ -1,6 +1,18 @@
 {
-  "welcome": "Welcome Back",
   "login": "Login",
+  "login.welcome": "Welcome Back",
+  "login.loginAccount": "Login to your account",
+  "login.email": "email",
+  "login.password": "password",
+  "login.forgotPassword": "Forgot password?",
   "login.facebook": "Login with Facebook",
-  "date.format": "21/11/2019"
+  "login.doNotHaveAcc": "Don't have an account?",
+  "signUp": "Sign up",
+  "signUp.create": "Create Account",
+  "signUp.createNew": "Create new account",
+  "signUp.name": "name",
+  "signUp.email": "email",
+  "signUp.password": "password",
+  "signUp.rePassword": "re-password",
+  "signUp.haveACC": "Already have account?"
 }
