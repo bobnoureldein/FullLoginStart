@@ -173,9 +173,8 @@ const login = ({navigation}) => {
             hitSlop={{top: 12, bottom: 12, left: 8, right: 8}}>
             <Text
               style={{
-                fontWeight: 'bold',
-                color: '#E84545',
-                fontSize: newHP('2%'),
+                color: 'rgba(0,0,0,.8)',
+                fontSize: newHP('1.6%'),
               }}>
               {translations['login.forgotPassword']}
             </Text>
