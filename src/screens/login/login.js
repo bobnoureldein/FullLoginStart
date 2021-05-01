@@ -198,7 +198,7 @@ const login = ({navigation}) => {
           <TouchableOpacity
             disabled={loading}
             style={[styles.inputSubmitView, {backgroundColor: '#4267B2'}]}
-            onPress={() => navigation.navigate('Home', {screen: 'settings'})}>
+            onPress={() => navigation.navigate('Home', {screen: 'home'})}>
             <View style={{width: 40}}>
               <Icon name="facebook" style={styles.icon} />
             </View>
