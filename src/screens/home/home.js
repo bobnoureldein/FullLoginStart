@@ -1,35 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { useBackHandler } from '@react-native-community/hooks'
-// import { useHeaderHeight } from '@react-navigation/stack';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {useBackHandler} from '@react-native-community/hooks';
+import {useHeaderHeight} from '@react-navigation/stack';
+import Posts from './components/posts';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const home = () => {
-  // const headerHeight = useHeaderHeight();
+  const headerHeight = useHeaderHeight();
 
   useBackHandler(() => {
     if (shouldBeHandledHere) {
       // handle it
-      return true
+      return true;
     }
     // let the default thing happen
-    return false
-  })
+    return false;
+  });
 
   return (
-    <View style={[styles.main, { height: height - headerHeight }]}>
-      <Text>Hello Malak & Malek</Text>
+    <View style={[styles.main, {height: height - headerHeight}]}>
+      <Posts />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  main: {
-    width: width,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  main: {},
 });
 
 export default home;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Image, Dimensions } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { HeaderBackButton } from '@react-navigation/stack';
+import {View, Image, Dimensions, TouchableOpacity, Text} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {HeaderBackButton} from '@react-navigation/stack';
 import Home from '../screens/home/home';
-import Settings from '../screens/settings/settings'
+import Settings from '../screens/settings/settings';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 const AppStack = createStackNavigator();
 
 const navigationOptions = () => ({
@@ -16,7 +16,7 @@ export function Application() {
   function LogoTitle() {
     return (
       <Image
-        style={{ height: 50, width: width }}
+        style={{height: 40, width: width}}
         source={require('../assets/images/logo.png')}
         resizeMode="contain"
       />
@@ -37,13 +37,12 @@ export function Application() {
         },
         headerTitleAlign: 'center',
       }}>
-
       <AppStack.Screen
         name="home"
         component={Home}
         options={{
-          headerTitle: (props) => <LogoTitle {...props} />,
-          // headerLeft: (props) => <View />,
+          headerTitle: props => <LogoTitle {...props} />,
+          // headerLeft: props => <View />,
           // headerRight: (props) => <Text>New</Text>,
         }}
       />
@@ -51,7 +50,7 @@ export function Application() {
         name="settings"
         component={Settings}
         options={{
-          headerTitle: "Settings"
+          headerTitle: 'Settings',
         }}
       />
     </AppStack.Navigator>

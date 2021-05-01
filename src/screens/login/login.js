@@ -53,7 +53,7 @@ const login = ({navigation}) => {
   function handleLogin(values, actions) {
     console.log('values ', values);
     setLoading(true);
-    navigation.navigate('Home', {screen: 'settings'}, setLoading(false));
+    navigation.navigate('Home', {screen: 'home'}, setLoading(false));
     actions.resetForm();
   }
 
