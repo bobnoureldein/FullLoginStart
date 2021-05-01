@@ -3,8 +3,17 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LocalizationContext} from '../../components/translations';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as lor,
+  removeOrientationListener as rol,
+} from 'react-native-responsive-screen-hooks';
 
 const Settings = () => {
+  const [orientation, setOrientation] = React.useState('portrait');
+  const newHP = orientation === 'portrait' ? hp : wp;
+
   const insets = useSafeAreaInsets();
   const {
     translations,
